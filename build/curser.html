@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Cursor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-black h-screen">
+  <div class="w-64 h-64 overflow-hidden relative cursor-none" id="image-container">
+    <img
+      src="https://via.placeholder.com/600"
+      alt="Image"
+      class="absolute top-0 left-0 pointer-events-none"
+      id="moving-image"
+    />
+  </div>
+  
+  <script>
+    const container = document.getElementById('image-container');
+    const image = document.getElementById('moving-image');
+  
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+  
+      const imageWidth = image.offsetWidth;
+      const imageHeight = image.offsetHeight;
+      const containerWidth = rect.width;
+      const containerHeight = rect.height;
+  
+      // Calculate offset to move image
+      const moveX = -((x / containerWidth) * (imageWidth - containerWidth));
+      const moveY = -((y / containerHeight) * (imageHeight - containerHeight));
+  
+      image.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>paycard</title>
+
+  <!-- live progress and time  -->
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".launchpad-card");
+
+      cards.forEach((card) => {
+        const softCap = parseFloat(card.dataset.soft);
+        const hardCap = parseFloat(card.dataset.hard);
+        const raised = parseFloat(card.dataset.raised);
+        const endTime = new Date(card.dataset.endtime);
+
+        // Progress %
+        const progress = ((raised / hardCap) * 100).toFixed(2);
+        const progressBar = card.querySelector(".progress-bar");
+        const progressText = card.querySelector(".progress-text");
+        progressBar.style.width = `${progress}%`;
+        progressText.innerText = `Progress (${progress}%)`;
+
+        // Countdown Timer
+        const timer = card.querySelector(".countdown");
+
+        function updateCountdown() {
+          const now = new Date();
+          const diff = Math.max(0, endTime - now);
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / 1000 / 60) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+
+          timer.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      });
+    });
+  </script>
+
+</head>
+<body class="bg-black text-white">
+  
+  <!-- Navbar -->
+  <nav class="w-full px-6 py-4 flex items-center justify-between bg-black">
+   <!-- Logo -->
+   <div class="flex items-center gap-2">
+     <img src="./img/navlogo.png" class="w-10 animate-softpulse" alt="Logo" >
+     
+   </div>
+ 
+   <!-- Desktop Nav -->
+   <div class="hidden md:flex items-center gap-6 text-xs font-semibold">
+     <div class="group relative cursor-pointer hover:text-yellow-400">
+       <span>HOME</span>
+     </div>
+     <div class="group relative cursor-pointer hover:text-yellow-400">
+       <span>ABOUT</span>
+       <div class="absolute hidden group-hover:block bg-black text-white text-xs mt-1 py-1 px-2 rounded shadow-md">
+         <p>Our Mission</p>
+         <p>Vision</p>
+       </div>
+     </div>
+     <div class="cursor-pointer hover:text-yellow-400">TEAM</div>
+     <div class="group relative cursor-pointer hover:text-yellow-400">
+       <span>SERVICES</span>
+       <div class="absolute hidden group-hover:block bg-black text-white text-xs mt-1 py-1 px-2 rounded shadow-md">
+         <p>Consulting</p>
+         <p>Development</p>
+       </div>
+     </div>
+     <div class="cursor-pointer hover:text-yellow-400">CONTACT</div>
+   </div>
+ 
+   <!-- Download Button -->
+   <div class="hidden md:block">
+     <button class="border border-white text-xs px-6 py-4 rounded-2xl hover:bg-white hover:text-black transition">
+       Download App
+     </button>
+   </div>
+ 
+   <!-- Mobile Hamburger -->
+   <div class="md:hidden">
+     <button id="menuToggle" class="text-white focus:outline-none">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M4 6h16M4 12h16M4 18h16" />
+       </svg>
+     </button>
+   </div>
+ </nav>
+ <hr >
+ <!-- Mobile Menu -->
+ <div id="mobileMenu" class="hidden md:hidden px-6 text-sm bg-black text-white">
+   <a href="#" class="block py-2 hover:text-yellow-400 ">HOME</a>
+   <a href="#" class="block py-2 hover:text-yellow-400">ABOUT</a>
+   <a href="#" class="block py-2 hover:text-yellow-400">TEAM</a>
+   <a href="#" class="block py-2 hover:text-yellow-400">SERVICES</a>
+   <a href="#" class="block py-2 hover:text-yellow-400">CONTACT</a>
+   <button class="mt-2 border border-white w-full py-2 rounded-full">Download App</button>
+ </div>
+ 
+ <!-- hero section  -->
+ <section>
+   <div class="flex lg:flex-row flex-col justify-center items-center w-full py-20 lg:px-10 px-5">
+     <div class="lg:w-1/2 w-full">
+       <div class="flex gap-2 lg:justify-start justify-center">
+        
+<div >
+   <img src="./img/STARS.png" class="animate-spin-slow" alt=""></div>
+ <p class="text-[#7E8384] ">Preserve and empowering</p>
+       </div>
+       
+       <h1 class="2xl:text-[86px] lg:text-[60px] text-4xl lg:text-start text-start leading-tight " >Best place buy and sell <span class="text-[#7E8384]">crypto <br> currency</span> asset</h1>
+ 
+      <p class="py-5 lg:text-start text-center"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute  mollit anim id est laborum.</p>
+ <div class="flex gap-10 lg:justify-start justify-center">
+   <button class="bg-white hover:bg-transparent hover:text-white hover:border px-6 py-3 text-black rounded-xl text-sm">Get Started</button>
+   <button class=" px-6 py-3  border  rounded-xl hover:bg-white hover:text-black">  <i class="fa-solid fa-play"></i> Watch Tutorials</button>
+ </div>
+     </div>
+     <div class="lg:w-1/2 w-full flex justify-center items-center lg:pt-0 md:pt-14 pt-10 ">
+      <img src="./img/herooo.png" class="lg:w-[80%] w-[70%] lg:pt-0 md:pt-14 pt-10 animate-spin-slow " alt="">
+     </div>
+   </div>
+ </section>
+ 
+
+ <!-- transition section  -->
+
+
+ <section class="relative bg-black text-white py-16 px-6 lg:px-20 overflow-hidden">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 relative z-10">
+    
+    <!-- Chart Image -->
+    <div class="w-full lg:w-1/2">
+      <img src="./img/transition.png" alt="Chart" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+
+    <!-- Text Content -->
+    <div class="w-full lg:w-1/2 text-center lg:text-left relative">
+      <p class="text-sm uppercase tracking-wide text-gray-400 mb-2">Preserve and Empowering</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+        Accelerate the world’s transition
+      </h1>
+      <p class="text-gray-300 mb-8 leading-relaxed">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute mollit anim id est laborum.
+      </p>
+      <a href="#"
+         class="inline-block hover:bg-transparent hover:text-white hover:border  bg-white text-black font-semibold py-3 px-6 rounded-md shadow hover:bg-gray-100 transition">
+        More About Us
+      </a>
+
+      <!-- Decorative Graphic -->
+      <img src="./img/transitionbg.png" 
+      alt="Wireframe Decoration" 
+      class="absolute -bottom-28 -right-20 w-48 sm:w-64 lg:w-72 pointer-events-none select-none animate-floating z-[-1]" />
+ 
+
+  </div>
+</section>
+
+
+<!-- why Choose us  -->
+<section  class="2xl:px-24 lg:px-5 px-5 ">
+  <div class="text-center py-12 px-4 sm:px-6 lg:px-8  ">
+    <h6 class="text-lg sm:text-xl md:text-2xl font-medium text-white">Why Choose Us</h6>
+    <h1 class="text-4xl  md:text-5xl font-bold text-white py-2">
+      Safe, guaranteed, and easy to use
+    </h1>
+    <p class="text-sm sm:text-base md:text-lg text-[#CFCFCF] leading-relaxed pt-4">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad <br class="hidden md:block">
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute mollit anim id est laborum.
+    </p>
+  </div>
+  
+  <div class="flex flex-wrap justify-center items-stretch gap-5 px-4">
+    <!-- Card 1 -->
+    <div class="border hover:border hover:border-yellow-400 rounded-lg w-full sm:w-[48%] lg:w-[23%] px-6 py-6  text-start">
+      <div class="py-4 flex justify-start">
+        <img src="./img/secure.png" class="w-20" alt="Secure Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Safe and Secure</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+    </div>
+  
+    <!-- Card 2 -->
+    <div class="border hover:border hover:border-yellow-400  rounded-lg w-full sm:w-[48%] lg:w-[23%] px-6 py-6  text-start">
+      <div class="py-4 flex justify-start">
+        <img src="./img/gobel invest.png" class="w-20" alt="Investment Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Good Investment</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+    </div>
+  
+    <!-- Card 3 -->
+    <div class="border hover:border hover:border-yellow-400  rounded-lg w-full sm:w-[48%] lg:w-[23%] px-6 py-6  text-start">
+      <div class="py-4 flex justify-start">
+        <img src="./img/app.png" class="w-20" alt="App Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Integrated App</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+    </div>
+  
+    <!-- Card 4 -->
+    <div class="border hover:border hover:border-yellow-400  rounded-lg w-full sm:w-[48%] lg:w-[23%] px-6 py-6  text-start">
+      <div class="py-4 flex justify-start">
+        <img src="./img/support.png" class="w-20" alt="Support Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Multi-Currency Support</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+    </div>
+  </div>
+  
+</section>
+
+ <!-- step by step guide  -->
+ <section  class="2xl:px-24 lg:px-5 px-5 ">
+  <div class="text-center py-12 px-4 sm:px-6 lg:px-8  ">
+    <h6 class="text-lg sm:text-xl md:text-2xl font-medium text-[#879295]">Step by step guide</h6>
+    <h1 class="text-4xl  md:text-5xl font-bold text-white py-2">
+      Easy Steps to Success
+    </h1>
+    <p class="text-sm sm:text-base md:text-lg text-[#CFCFCF] leading-relaxed pt-4">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad <br class="hidden md:block">
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute mollit anim id est laborum.
+    </p>
+  </div>
+  
+  <div class="flex flex-wrap justify-center items-stretch gap-5 px-4">
+    <!-- Card 1 -->
+    <div class="border hover:border hover:border-yellow-400  rounded-lg w-full sm:w-[48%] lg:w-[23%] px-8 py-6  text-center">
+      <div class="py-4 flex justify-center">
+        <img src="./img/create wallet.png" class="w-20" alt="Secure Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Create Wallet</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+      <div class="pt-5">
+        <button class="text-black hover:text-white bg-white hover:bg-transparent hover:border px-5 py-3 rounded-lg">Learn More ></button>
+      </div>
+    </div>
+  
+    <!-- Card 2 -->
+    <div class="border hover:border hover:border-yellow-400  rounded-lg w-full sm:w-[48%] lg:w-[23%] px-8 py-6  text-center">
+      <div class="py-4 flex justify-center">
+        <img src="./img/make payment.png" class="w-20" alt="Investment Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Make Payment</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+      <div class="pt-5">
+        <button class="text-black hover:text-white bg-white hover:bg-transparent hover:border px-5 py-3 rounded-lg">Learn More ></button>
+      </div>
+    </div>
+  
+    <!-- Card 3 -->
+    <div class="border hover:border hover:border-yellow-400  rounded-lg w-full sm:w-[48%] lg:w-[23%] px-8 py-6  text-center">
+      <div class="py-4 flex justify-center">
+        <img src="./img/buy and sell.png" class="w-20" alt="App Icon">
+      </div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Buy and or sell</h1>
+      <p class="text-[#7D7D7D] mt-2 text-sm md:text-base">
+        Lorem ullamco laboris nisi ex ea commodo consequat. Duis aute mollit anim id est laborum sad to veniam nostrud quis exercition laboris.
+      </p>
+      <div class="pt-5">
+        <button class="text-black hover:text-white bg-white hover:bg-transparent hover:border px-5 py-3 rounded-lg">Learn More ></button>
+      </div>
+    </div>
+  
+    
+  </div>
+  
+</section>
+
+
+
+<!-- our future  -->
+<section class="relative bg-black text-white py-16 px-20 overflow-hidden">
+  <!-- Animated Top-Left Background Image -->
+  <img src="./img/our future.png" alt="Background Decoration"
+       class="absolute top-16 left-0 w-40 md:w-64 lg:w-80 opacity-70 pointer-events-none animate-floating z-0" />
+
+  <!-- Main Content -->
+  <div class=" text-center relative z-10">
+    
+    <p class="text-sm text-gray-400">Our Features</p>
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">All you need is here</h2>
+    <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+      Tasks To Increase Your Twin SBT Value. You Control When To Update Your Achievements On-Chain.<br />
+      You Control When To Update Your Achievements On-Chain
+    </p>
+  </div>
+
+  <!-- Features Section -->
+  <div class="mt-16 px-16 grid grid-cols-1 md:grid-cols-3 items-center relative z-10">
+    <!-- Left Features -->
+    <div class="space-y-8 md:space-y-2">
+      <div class="text-center bg-[#0E0E0E] px-6 py-10 sm:w-full rounded-lg shadow-md border border-white hover:border hover:border-yellow-400 ">
+        <div class="flex justify-center items-center">
+          <img src="./img/aford.png" class="animate-spin-slow" alt="">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Affordable</h3>
+        <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet consectetur. Duis eu felis mattis et id lobortis sed senectus mattis et egestas.</p>
+      </div>
+      <div class="bg-[#0E0E0E] text-center  px-6 py-10 rounded-lg shadow-md border border-white hover:border hover:border-yellow-400 ">
+        <div class="flex justify-center items-center">
+          <img src="./img/free.png" class="animate-round" alt="">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Free trial Account</h3>
+        <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet consectetur. Duis eu felis mattis et id lobortis sed senectus mattis et egestas.</p>
+      </div>
+    </div>
+
+    <!-- Center Handshake Image -->
+    <div class="flex justify-center pt-14">
+      <img src="./img/handshake.png"  alt="Handshake"
+           class="w-[100%] animate-softpulse" />
+    </div>
+
+    <!-- Right Features -->
+    <div class="space-y-8 md:space-y-2">
+      <div class="bg-[#0E0E0E] text-center  px-6 py-10 rounded-lg shadow-md border border-white hover:border hover:border-yellow-400 ">
+        <div class="flex justify-center items-center">
+          <img src="./img/guide.png" class="animate-spin-slow" alt="">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Guide by Experts</h3>
+        <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet consectetur. Duis eu felis mattis et id lobortis sed senectus mattis et egestas.</p>
+      </div>
+      <div class="bg-[#0E0E0E] text-center  px-6 py-10 rounded-lg shadow-md border border-white hover:border hover:border-yellow-400 ">
+        <div class="flex justify-center items-center">
+          <img src="./img/live.png" class="animate-round" alt="">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">24/7 Live Support</h3>
+        <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet consectetur. Duis eu felis mattis et id lobortis sed senectus mattis et egestas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- live card section  -->
+
+<section class="py-16 px-4">
+  <div class="max-w-7xl mx-auto text-center mb-10">
+    <h2 class="text-gray-400 text-sm mb-1">Papasale</h2>
+    <h3 class="text-3xl md:text-4xl font-bold">Launchpad Lists</h3>
+  </div>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+    
+    <!-- Launchpad Card -->
+    <div class="launchpad-card bg-[#000000] rounded-xl border border-white hover:border hover:border-yellow-400  p-6 relative"
+         data-soft="18" data-hard="36" data-raised="14" data-endtime="2025-04-22T00:00:00">
+      <div class="absolute top-4 right-4">
+        <span class="bg-transparent hover:bg-white text-white hover:text-black  border   text-xs px-3 py-1 rounded-full">Upcoming</span>
+      </div>
+      <img src="./img/card1.png" alt="Avatar" class="w-10 h-10 rounded-full mb-4">
+      <h4 class="text-lg font-semibold">Defy kings Lending</h4>
+      <p class="text-sm text-white mt-1">1 BNB = 69,444.44 DKL</p>
+      <p class="text-sm text-white mt-3">Soft/Hard: 18 BNB – 36 BNB</p>
+      <p class="text-white font-medium text-sm mt-1">14 BNB – 36 BNB</p>
+
+      <div class="mt-4">
+        <p class="text-xs text-white mb-1 progress-text">Progress (0.00%)</p>
+        <div class="w-full h-2 bg-transparent border rounded-full">
+          <div class="h-2 bg-white rounded-full progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-sm text-white mt-4">
+        <span>0 BNB</span>
+        <span>36 BNB</span>
+      </div>
+
+      <div class="flex justify-between mt-3 text-sm text-white">
+        <span>Liquidity %</span><span>51%</span>
+      </div>
+      <div class="flex justify-between mt-1 text-sm text-white">
+        <span>Lockup Time:</span><span>180 days</span>
+      </div>
+
+      <div class="flex justify-between items-center mt-4 text-sm text-white">
+        <div>
+          <p>Sale starts in:</p>
+          <p class="text-white text-sm countdown">--</p>
+        </div>
+        <button class="bg-white text-black hover:bg-transparent hover:text-white hover:border hover:border-white px-4 py-1 rounded-lg text-sm">View</button>
+      </div>
+    </div>
+
+
+
+    <div class="launchpad-card bg-[#000000] rounded-xl border border-white hover:border hover:border-yellow-400  p-6 relative"
+         data-soft="18" data-hard="36" data-raised="14" data-endtime="2025-04-22T00:00:00">
+      <div class="absolute top-4 right-4">
+        <span class="bg-transparent hover:bg-white text-white hover:text-black  border   text-xs px-3 py-1 rounded-full">Upcoming</span>
+      </div>
+      <img src="./img/card 2.png" alt="Avatar" class="w-10 h-10 rounded-full mb-4">
+      <h4 class="text-lg font-semibold">Defy kings Lending</h4>
+      <p class="text-sm text-white mt-1">1 BNB = 69,444.44 DKL</p>
+      <p class="text-sm text-white mt-3">Soft/Hard: 18 BNB – 36 BNB</p>
+      <p class="text-white font-medium text-sm mt-1">14 BNB – 36 BNB</p>
+
+      <div class="mt-4">
+        <p class="text-xs text-white mb-1 progress-text">Progress (0.00%)</p>
+        <div class="w-full h-2 bg-transparent border rounded-full">
+          <div class="h-2 bg-white rounded-full progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-sm text-white mt-4">
+        <span>0 BNB</span>
+        <span>36 BNB</span>
+      </div>
+
+      <div class="flex justify-between mt-3 text-sm text-white">
+        <span>Liquidity %</span><span>51%</span>
+      </div>
+      <div class="flex justify-between mt-1 text-sm text-white">
+        <span>Lockup Time:</span><span>180 days</span>
+      </div>
+
+      <div class="flex justify-between items-center mt-4 text-sm text-white">
+        <div>
+          <p>Sale starts in:</p>
+          <p class="text-white text-sm countdown">--</p>
+        </div>
+        <button class="bg-white text-black hover:bg-transparent hover:text-white hover:border hover:border-white px-4 py-1 rounded-lg text-sm">View</button>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="launchpad-card bg-[#000000] rounded-xl border border-white hover:border hover:border-yellow-400  p-6 relative"
+         data-soft="18" data-hard="36" data-raised="14" data-endtime="2025-04-22T00:00:00">
+      <div class="absolute top-4 right-4">
+        <span class="bg-transparent hover:bg-white text-white hover:text-black  border  text-xs px-3 py-1 rounded-full">Upcoming</span>
+      </div>
+      <img src="./img/card 3.png" alt="Avatar" class="w-10 h-10 rounded-full mb-4">
+      <h4 class="text-lg font-semibold">Defy kings Lending</h4>
+      <p class="text-sm text-white mt-1">1 BNB = 69,444.44 DKL</p>
+      <p class="text-sm text-white mt-3">Soft/Hard: 18 BNB – 36 BNB</p>
+      <p class="text-white font-medium text-sm mt-1">14 BNB – 36 BNB</p>
+
+      <div class="mt-4">
+        <p class="text-xs text-white mb-1 progress-text">Progress (0.00%)</p>
+        <div class="w-full h-2 bg-transparent border rounded-full">
+          <div class="h-2 bg-white  rounded-full progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-sm text-white mt-4">
+        <span>0 BNB</span>
+        <span>36 BNB</span>
+      </div>
+
+      <div class="flex justify-between mt-3 text-sm text-white">
+        <span>Liquidity %</span><span>51%</span>
+      </div>
+      <div class="flex justify-between mt-1 text-sm text-white">
+        <span>Lockup Time:</span><span>180 days</span>
+      </div>
+
+      <div class="flex justify-between items-center mt-4 text-sm text-white">
+        <div>
+          <p>Sale starts in:</p>
+          <p class="text-white text-sm countdown">--</p>
+        </div>
+        <button class="bg-white text-black hover:bg-transparent hover:text-white hover:border hover:border-white px-4 py-1 rounded-lg text-sm">View</button>
+      </div>
+    </div>
+
+    <!-- Duplicate this div for other cards with different data-* attributes -->
+    <!-- Just change data-soft, data-hard, data-raised, and data-endtime values -->
+    
+  </div>
+</section>
+
+
+<!-- crypto exchange  -->
+
+<section class="md:px-20 px-4 pt-10">
+  <div class="w-full flex md:flex-row flex-col justify-center items-center border rounded-xl md:px-10 px-2" style="background-image: url(./img/BG\ img.png);">
+    <div class="md:w-1/2 w-full md:text-start text-center">
+      <h6 class="text-[#969292] pt-4">Crypto Exchange</h6>
+      <h1 class="text-white font-medium text-4xl py-3">
+        Low fees and deep liquidity
+      </h1>
+      <p class="text-[#CFCFCF] leading-9">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et consequat. Duis aute  mollit anim id est laborum.</p>
+      <div class="py-6">
+        <button class=" hover:bg-white hover:text-black  text-white px-8 py-3 bg-transparent border rounded-xl">Go To Exchanges</button>
+      </div>
+    </div>
+    <!-- image div  -->
+     <div class="md:w-1/2 w-full flex justify-center items-center py-4">
+   <img src="./img/exchange.png" class="animate-spin-slow" alt="">
+     </div>
+  </div>
+</section>
+
+<section class="bg-black text-white py-20 px-4">
+  <div class="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
+    
+    <!-- Left: Globe Image -->
+    <div class="w-full lg:w-1/2 flex 2xl:justify-start justify-center items-center ">
+      <img src="./img/globel.png"
+           alt="Globe" class="2xl:w-[100%] lg:w-[70%] w-full animate-spin-slow">
+    </div>
+
+    <!-- Right: Text & Form -->
+    <div class="w-full lg:w-1/2 lg:text-start">
+      <p class="text-sm text-gray-400 mb-2">Start Now</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Sign up to learn more</h2>
+      <p class="text-gray-400 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et consequat. Duis aute mollit anim id est laborum.</p>
+      
+      <!-- Email Input -->
+      <form class="flex flex-col sm:flex-row border border-gray-600 rounded-md overflow-hidden max-w-md">
+        <input type="email"
+               placeholder="Enter your email"
+               class="bg-black text-white px-4 py-3 w-full outline-none"
+               required>
+        <button type="submit"
+                class="bg-white text-black px-6 py-3 font-semibold hover:bg-gray-200 transition-all">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- footer  -->
+ <hr>
+<footer class="bg-black text-white py-10 px-6 md:px-20">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <!-- Logo and Description -->
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8  rounded-full flex items-center justify-center">
+          <!-- Replace with actual logo if needed -->
+         
+       
+        <img src="./img/navlogo.png" alt="">
+      </div>
+      <h1 class="text-3xl font-semibold">Twin3.ai</h1>
+      </div>
+      <p class="text-sm text-gray-400">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+        consequat. Duis aute mollit anim id est laborum.
+      </p>
+      <div class="flex gap-4 mt-4">
+        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-300">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-300">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-300">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Our Products -->
+    <div>
+      <h2 class="font-semibold mb-4">Our Products</h2>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li><a href="#" class="hover:text-white">Crypto Earn</a></li>
+        <li><a href="#" class="hover:text-white">Exchanges</a></li>
+        <li><a href="#" class="hover:text-white">Defi Wallet</a></li>
+        <li><a href="#" class="hover:text-white">Converter</a></li>
+      </ul>
+    </div>
+
+    <!-- Pages -->
+    <div>
+      <h2 class="font-semibold mb-4">Pages</h2>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li><a href="#" class="hover:text-white">About Us</a></li>
+        <li><a href="#" class="hover:text-white">Our app</a></li>
+        <li><a href="#" class="hover:text-white">Careers</a></li>
+        <li><a href="#" class="hover:text-white">Token Safe</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h2 class="font-semibold mb-4">Contact</h2>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-phone-alt"></i>
+          (205) 555-01000
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="far fa-clock"></i>
+          Mon - Fri : 9 am - 11 pm
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="far fa-envelope"></i>
+          Email@coinreal.com
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+ 
+ <!-- fontoswem  -->
+ <script src="https://kit.fontawesome.com/844a407e82.js" crossorigin="anonymous"></script>
+ <!-- navbar  -->
+ 
+ <script>
+   const toggleBtn = document.getElementById('menuToggle');
+   const mobileMenu = document.getElementById('mobileMenu');
+ 
+   toggleBtn.addEventListener('click', () => {
+     mobileMenu.classList.toggle('hidden');
+   });
+ </script>
+ </body>
+</html>
