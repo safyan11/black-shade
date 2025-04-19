@@ -620,6 +620,34 @@ video {
   top: 1rem;
 }
 
+.-right-10{
+  right: -2.5rem;
+}
+
+.-right-1{
+  right: -0.25rem;
+}
+
+.-right-5{
+  right: -1.25rem;
+}
+
+.left-2{
+  left: 0.5rem;
+}
+
+.left-3{
+  left: 0.75rem;
+}
+
+.-right-6{
+  right: -1.5rem;
+}
+
+.-right-8{
+  right: -2rem;
+}
+
 .z-0{
   z-index: 0;
 }
@@ -769,6 +797,26 @@ video {
   width: 100%;
 }
 
+.w-24{
+  width: 6rem;
+}
+
+.w-\[80\%\]{
+  width: 80%;
+}
+
+.w-\[\]{
+  width: ;
+}
+
+.w-\[7\]{
+  width: 7;
+}
+
+.w-\[70\]{
+  width: 70;
+}
+
 .max-w-2xl{
   max-width: 42rem;
 }
@@ -875,6 +923,12 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.space-y-6 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
 .overflow-hidden{
@@ -1089,6 +1143,11 @@ video {
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold{
@@ -1371,6 +1430,10 @@ animate-round */
     width: 100%;
   }
 
+  .sm\:w-40{
+    width: 10rem;
+  }
+
   .sm\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1398,6 +1461,11 @@ animate-round */
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .sm\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
 }
 
 @media (min-width: 768px){
@@ -1419,6 +1487,10 @@ animate-round */
 
   .md\:w-64{
     width: 16rem;
+  }
+
+  .md\:w-full{
+    width: 100%;
   }
 
   .md\:grid-cols-3{
@@ -1484,6 +1556,10 @@ animate-round */
 }
 
 @media (min-width: 1024px){
+  .lg\:block{
+    display: block;
+  }
+
   .lg\:w-1\/2{
     width: 50%;
   }
@@ -1538,6 +1614,16 @@ animate-round */
   .lg\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:px-24{
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
+  .lg\:px-32{
+    padding-left: 8rem;
+    padding-right: 8rem;
   }
 
   .lg\:pt-0{
